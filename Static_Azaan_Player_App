@@ -105,7 +105,7 @@ def responseHandler() {
             // see http://docs.smartthings.com/en/latest/smartapp-developers-guide/scheduling.html#run-once-in-the-future-runonce
             runOnce(date, playAdhan, [data: [name: prayers[times.indexOf(it)]], overwrite: false])
         } else {
-            log("Time for ${it} prayer passed, not scheduling adhan for today")
+            log("Time for ${prayers[times.indexOf(it)]} prayer passed, not scheduling adhan for today")
         }
     }
 }
