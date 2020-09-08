@@ -1,0 +1,18 @@
+metadata {
+	definition (name: "Virtual motion with Switch", namespace: "cw", author: "shwail") {
+		capability "Sensor"
+		capability "Motion Sensor"
+        capability "Switch"
+	}
+}
+def on() {
+    sendEvent(name: "motion", value: "active")
+    sendEvent(name: "switch", value: "on")
+    runIn(12, off)
+}
+def off() {
+    sendEvent(name: "motion", value: "inactive")
+    sendEvent(name: "switch", value: "off")
+}
+def installed() {
+}
