@@ -1,5 +1,5 @@
 /**
- * Source: https://github.com/akhandok/adhanPlayer
+ * Source: https://github.com/mshwail/Neverland
  *
  * This app heavily depends upon (and assumes usage of): https://aladhan.com/prayer-times-api#GetTimingsByAddresss
  */
@@ -10,8 +10,8 @@ definition(
     description: "Plays the Adhan on the selected speaker(s) at the appropriate prayer times.",
     iconUrl: "",
     iconX2Url: "",
-    namespace: "com.azfarandnusrat.adhanPlayer",
-    importUrl: "https://raw.githubusercontent.com/akhandok/adhanPlayer/master/app.groovy"
+    namespace: "com.shwail",
+    importUrl: "https://github.com/mshwail/Neverland"
 )
 
 preferences {
