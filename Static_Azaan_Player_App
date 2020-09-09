@@ -150,7 +150,8 @@ def timetable = [1: ['6:43', '12:30', '14:3', '16:19', '18:7'], 2: ['6:43', '12:
 
 
 def cal = Calendar.getInstance()
-def dayofyear = cal.get(Calendar.DAY_OF_YEAR)
+/* remove the +1 for leap years */
+def dayofyear = cal.get(Calendar.DAY_OF_YEAR) + 1
 timetable[dayofyear]
 }
 
