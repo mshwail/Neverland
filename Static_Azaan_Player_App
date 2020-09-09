@@ -34,7 +34,7 @@ def settingsPage() {
                 input "notifier", "capability.notification", title: "Notification Device(s)", required: true, multiple: true
             }
 
-            input "preAdhanNotification", "bool", title: "Send notification before Azan ?", submitOnChange: true
+            input "preAdhanNotification", "bool", title: "Play notification before Azan ?", submitOnChange: true
 
             if (preAdhanNotification) {
                 input "preadhan", "number", title: "Pre Adhan Notifiction in Minutes", range: "*..*"
