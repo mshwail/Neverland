@@ -113,13 +113,14 @@ def responseHandler() {
         }
     }
     if (muteDevices) {
+        if (new Date().before(date)) {
         log("Scheduling mute for  ${prayers[times.indexOf(it)]} at ${date} prayer adhan...")
         runOnce(date, mute)
         use( groovy.time.TimeCategory  ){     unmuteTime = date + 231.seconds }
         log("Scheduling unmute for  ${prayers[times.indexOf(it)]} at ${unmuteTime} prayer adhan...")
         runOnce(unmuteTime, unmute)
 
-    }
+    }}
 } }
 
 def playAdhan(data) {
