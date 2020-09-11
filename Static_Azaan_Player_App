@@ -2,7 +2,7 @@
 /**
  * Good Luck
  *
- *
+ * 3:51 sleep
  */
 
 definition(
@@ -38,6 +38,12 @@ def settingsPage() {
 
             if (preAdhanNotification) {
                 input "preadhan", "number", title: "Pre Adhan Notifiction in Minutes", range: "*..*"
+            }
+
+            input "muteDevices", "bool", title: "Mute Devices?", submitOnChange: true
+
+            if (muteDevices) {
+                input "mute_devices", "capability.audioVolume", title: "Devices to mute during Azan", required: true, multiple: true, submitOnChange: true
             }
 
 
@@ -106,6 +112,14 @@ def responseHandler() {
             log("Notification Time for ${prayers[times.indexOf(it)]} prayer passed, not scheduling adhan for today")
         }
     }
+    if (muteDevices) {
+        log("Scheduling mute for  ${prayers[times.indexOf(it)]} at ${date} prayer adhan...")
+        runOnce(date, mute)
+        use( groovy.time.TimeCategory  ){     unmuteTime = date + 231.seconds }
+        log("Scheduling unmute for  ${prayers[times.indexOf(it)]} at ${unmuteTime} prayer adhan...")
+        runOnce(unmuteTime, unmute)
+
+    }
 } }
 
 def playAdhan(data) {
@@ -142,6 +156,26 @@ def toDate(time) {
     cal.set(Calendar.MINUTE, min)
     cal.set(Calendar.SECOND, 0)
     cal.getTime()
+}
+
+def mute() {
+    mute_devices.each{
+                if (it.hasCommand("mute")) {
+                it.mute()
+            }
+    }
+
+
+}
+
+def unmute() {
+    mute_devices.each{
+                if (it.hasCommand("unmute")) {
+                it.unmute()
+            }
+    }
+
+
 }
 
 def toDate2() {
