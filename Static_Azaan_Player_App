@@ -26,8 +26,6 @@ def settingsPage() {
         section {
             input "switches", "capability.switch", title: "switch to trigger Azhan", required: true, multiple: true, submitOnChange: true
 
-            input "pre_switches", "capability.switch", title: "switch to trigger pre Azhan", required: true, multiple: true, submitOnChange: true
-
             input "shouldSendPushNotification", "bool", title: "Send push notifications?", submitOnChange: true
 
             if (shouldSendPushNotification) {
@@ -37,7 +35,8 @@ def settingsPage() {
             input "preAdhanNotification", "bool", title: "Play notification before Azan ?", submitOnChange: true
 
             if (preAdhanNotification) {
-                input "preadhan", "number", title: "Pre Adhan Notifiction in Minutes", range: "*..*"
+                input "pre_switches", "capability.switch", title: "switch to trigger pre Azan", required: true, multiple: true, submitOnChange: true
+                input "preadhan", "number", title: "Pre Azan Notifiction in Minutes", range: "*..*"
             }
 
             input "muteDevices", "bool", title: "Mute Devices?", submitOnChange: true
