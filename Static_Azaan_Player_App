@@ -2,7 +2,7 @@
 /**
  * Good Luck
  *
- * 3:51 sleep
+ *
  */
 
 definition(
@@ -119,10 +119,10 @@ def responseHandler() {
     if (muteDevices) {
         if (new Date().before(date)) {
         log("Scheduling mute for  ${prayers[times.indexOf(it)]} at ${date} prayer adhan...")
-        runOnce(date, mute)
+        runOnce(date, mute, [data: [name: prayers[times.indexOf(it)]], overwrite: false])
         use( groovy.time.TimeCategory  ){     unmuteTime = date + 231.seconds }
         log("Scheduling unmute for  ${prayers[times.indexOf(it)]} at ${unmuteTime} prayer adhan...")
-        runOnce(unmuteTime, unmute)
+        runOnce(unmuteTime, unmute, [data: [name: prayers[times.indexOf(it)]], overwrite: false])
 
     }}
 } }
@@ -164,7 +164,7 @@ def toDate(time) {
     cal.getTime()
 }
 
-def mute() {
+def mute(data) {
     mute_devices.each{
                 if (it.hasCommand("mute")) {
                 it.mute()
@@ -174,7 +174,7 @@ def mute() {
 
 }
 
-def unmute() {
+def unmute(data) {
     mute_devices.each{
                 if (it.hasCommand("unmute")) {
                 it.unmute()
