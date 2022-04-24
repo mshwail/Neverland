@@ -557,7 +557,7 @@ ArrayList<String> getBattery() {
 private String getDriverVersion() {
     comment = "Works with models ZNCLDJ11LM & ZNCLDJ12LM."
     if(comment != "") state.comment = comment
-    String version = "v1.0.2.1123b"
+    String version = "v1.0.2.1123x"
     logging("getDriverVersion() = ${version}", 100)
     sendEvent(name: "driver", value: version)
     updateDataValue('driver', version)
